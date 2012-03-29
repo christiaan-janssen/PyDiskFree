@@ -18,7 +18,7 @@ def FreeSpace(drive):
     except:
         return 0
  
-#workstations = ['DT-w7p-it2', 'srv-ws08-exact']
+#workstations = ['pc1', 'pc2']
 #print 'Hard drive sizes:'
 #for compName in workstations:
 #    drive = '\\\\' + compName + '\\d$'
