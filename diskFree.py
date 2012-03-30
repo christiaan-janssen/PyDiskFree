@@ -1,25 +1,25 @@
 import win32com.client as com
- 
-def TotalSize(drive):
-    """ Return the TotalSize of a shared drive [GB]"""
-    try:
-        fso = com.Dispatch("Scripting.FileSystemObject")
-        drv = fso.GetDrive(drive)
-        return drv.TotalSize/2**30
-    except:
-        return 0
- 
-def FreeSpace(drive):
-    """ Return the FreeSpace of a shared drive [GB]"""
-    try:
-        fso = com.Dispatch("Scripting.FileSystemObject")
-        drv = fso.GetDrive(drive)
-        return drv.FreeSpace/2**30
-    except:
-        return 0
- 
-#workstations = ['pc1', 'pc2']
-#print 'Hard drive sizes:'
-#for compName in workstations:
-#    drive = '\\\\' + compName + '\\d$'
-#    print 'FreeSpace on %s = %f GB' % (drive, FreeSpace(drive))
+
+class Disk():
+    def __init__(self, computer, disk):
+        self.name = computer
+        self.disk = disk
+        self.drive = '\\\\' + computer + '\\' + disk
+
+    def TotalSize(self):
+        """ Return the TotalSize of a shared drive [GB]"""
+        try:
+            fso = com.Dispatch("Scripting.FileSystemObject")
+            drv = fso.GetDrive(self.drive)
+            return drv.TotalSize/2**30
+        except:
+            return 0
+     
+    def FreeSpace(self):
+        """ Return the FreeSpace of a shared drive [GB]"""
+        try:
+            fso = com.Dispatch("Scripting.FileSystemObject")
+            drv = fso.GetDrive(self.drive)
+            return drv.FreeSpace/2**30
+        except:
+            return 0
