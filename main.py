@@ -2,8 +2,16 @@
 
 from diskFree import Disk
 
-workstations = ['DT-W7P-IT2', 'DT-W7P-IT1']
+workstations = []
+
+# Edit this text file to change the server names.
+f = open('../servers.txt', 'r')
+for line in f.readlines():
+	workstations.append(line.rstrip())
+
+# Which drives shuld we check?
 drive = ['c$','d$']
+
 print 'Hard drive sizes:'
 for compName in workstations:
 	for disk in drive:
