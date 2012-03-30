@@ -1,6 +1,9 @@
 # main.py
-
+# Import smtplib for the actual sending function
+import smtplib
 from diskFree import Disk
+# Import the email modules we'll need
+from email.mime.text import MIMEText
 
 workstations = []
 warnings = []
@@ -22,9 +25,8 @@ for compName in workstations:
 		if computer.FreeSpace() < 150 and computer.disk == "d$":
 			warnings.append(computer)
 
-
-for computer in warnings:
-	print ""
-	print "*** Warning ***"
-	print "Space on these drive(s) is getting low:"
-	print computer.drive
+		for computer in warnings:
+			print ""
+			print *"****** Warning *******"
+			print "Space on these drive(s) is getting low:"
+			print computer.drive
