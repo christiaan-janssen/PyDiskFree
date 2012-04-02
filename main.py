@@ -21,7 +21,7 @@ for line in f.readlines():
 # Which drives shuld we check?
 drive = ['c$','d$']
 
-print 'Hard drive sizes:'
+# print 'Hard drive sizes:'
 for compName in workstations:
 	for disk in drive:
 		computer = Disk(compName, disk)
