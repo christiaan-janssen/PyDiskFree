@@ -1,4 +1,9 @@
 # main.py
+# Small script to get show and/or warn about free diskspace on a remote machine
+# Only works on windows at the moment. The script will email you when disk space 
+# gets low.
+# Author: Christiaan Janssen
+
 # Import smtplib for the actual sending function
 import smtplib
 from diskFree import Disk
@@ -20,7 +25,8 @@ print 'Hard drive sizes:'
 for compName in workstations:
 	for disk in drive:
 		computer = Disk(compName, disk)
-		print "Freespace on %s\\%s: %i GB" % (computer.name, computer.disk, computer.FreeSpace())
+		# Uncomment this to show free diskspace
+		# print "Freespace on %s\\%s: %i GB" % (computer.name, computer.disk, computer.FreeSpace())
 
 		if computer.FreeSpace() < 150 and computer.disk == "d$":
 			warnings.append(computer)
@@ -31,6 +37,7 @@ if warnings != []:
 
 	# me == the sender's email address
 	# you == the recipient's email address
+	# **********  DONT FORGET TO CHANGE THESE: *************
 	msg['Subject'] = 'Disk Space Low '
 	msg['From'] = 'mailadress'
 	msg['To'] = 'mailadress'
