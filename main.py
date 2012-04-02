@@ -25,8 +25,20 @@ for compName in workstations:
 		if computer.FreeSpace() < 150 and computer.disk == "d$":
 			warnings.append(computer)
 
-for computer in warnings:
-	print ""
-	print "****** Warning *******"
-	print "Space on these drive(s) is getting low:"
-	print computer.drive
+if warnings != []:
+	# Create a text/plain message
+	msg = MIMEText("Disk Space Low on:\n\n")
+
+	# me == the sender's email address
+	# you == the recipient's email address
+	msg['Subject'] = 'Disk Space Low '
+	msg['From'] = 'mailadress'
+	msg['To'] = 'mailadress'
+	mail = msg.as_string()
+
+	for computer in warnings:
+		mail += computer.drive + "\n"
+
+	s = smtplib.SMTP('MailServer')
+	s.sendmail('mail_from', 'mail_to', mail)
+	s.quit()
