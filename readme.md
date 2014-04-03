@@ -1,3 +1,6 @@
+PyDiskFree
+==========
+
 Simple script to get the free space on a remote server under windows.
 The script reads the server names from a textfile.
 
